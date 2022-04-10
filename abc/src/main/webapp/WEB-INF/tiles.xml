@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+   <!-- 메인 화면 출력 -->
+   <definition name="main" template="/WEB-INF/main/main.jsp">
+       <put-attribute name="nav" value="/WEB-INF/inc/nav.jsp"/>
+      <put-attribute name="header" value="/WEB-INF/main/header.jsp"/>
+      <put-attribute name="content" value="/WEB-INF/main/content.jsp"/>      
+      <put-attribute name="footer" value="/WEB-INF/inc/footer.jsp"/>
+   </definition>
+   <!-- 메인페이지에서 다른페이지 화면출력 -->
+   
+   <!-- 동아리 메인 화면 출력 -->
+   <definition name="puzzle" template="/WEB-INF/puzzle/main.jsp">
+       <put-attribute name="nav" value="/WEB-INF/inc/nav.jsp"/>
+      <put-attribute name="aside" value="/WEB-INF/puzzle/aside.jsp"/>
+      <put-attribute name="content" value="/WEB-INF/puzzle/content.jsp"/>      
+      <put-attribute name="footer" value="/WEB-INF/inc/footer.jsp"/>
+   </definition>
+   <!-- 동아리 메인페이지에서 다른페이지 화면출력 -->
+   <definition name="gallery/*" extends="puzzle">
+      <put-attribute name="content" value="/WEB-INF/gallery/{1}.jsp" />
+   </definition>
+   <definition name="galendar/*" extends="puzzle">
+      <put-attribute name="content" value="/WEB-INF/galendar/{1}.jsp" />
+   </definition>
+   <definition name="food/*" extends="puzzle">
+		<put-attribute name="content" value="/WEB-INF/food/{1}.jsp"/>   
+   </definition>
+   <!-- 로그인회원가입 -->
+   		<definition name="member" template="/WEB-INF/member/main.jsp">
+		<put-attribute name="sign_up" value="/WEB-INF/member/sign_up.jsp"/>
+	</definition> 
+ 	<definition name="member/*" extends="member">
+		<put-attribute name="sign_up" value="/WEB-INF/member/{1}.jsp"/>
+	</definition> 
+	<!--  동아리 게시판  -->
+	<definition name="board/*" template="/WEB-INF/puzzle/main.jsp">
+       <put-attribute name="nav" value="/WEB-INF/inc/nav.jsp"/>
+      <put-attribute name="aside" value="/WEB-INF/puzzle/aside.jsp"/>
+      <put-attribute name="content" value="/WEB-INF/board/{1}.jsp"/>      
+      <put-attribute name="footer" value="/WEB-INF/inc/footer.jsp"/>
+   </definition>
+   
+</tiles-definitions>
