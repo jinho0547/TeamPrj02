@@ -20,6 +20,9 @@
       <put-attribute name="footer" value="/WEB-INF/inc/footer.jsp"/>
    </definition>
    <!-- 동아리 메인페이지에서 다른페이지 화면출력 -->
+   <definition name="chat/*" extends="puzzle">
+      <put-attribute name="content" value="/WEB-INF/chat/{1}.jsp" />
+   </definition>
    <definition name="gallery/*" extends="puzzle">
       <put-attribute name="content" value="/WEB-INF/gallery/{1}.jsp" />
    </definition>
@@ -29,6 +32,12 @@
    <definition name="food/*" extends="puzzle">
 		<put-attribute name="content" value="/WEB-INF/food/{1}.jsp"/>   
    </definition>
+     <definition name="puzzlecreate/*" extends="puzzle">
+		<put-attribute name="content" value="/WEB-INF/puzzlecreate/{1}.jsp"/>   
+   </definition>
+     <definition name="puzzlemember/*" extends="puzzle">
+		<put-attribute name="content" value="/WEB-INF/puzzlemember/{1}.jsp"/>   
+   </definition>
    <!-- 로그인회원가입 -->
    		<definition name="member" template="/WEB-INF/member/main.jsp">
 		<put-attribute name="sign_up" value="/WEB-INF/member/sign_up.jsp"/>
@@ -36,6 +45,57 @@
  	<definition name="member/*" extends="member">
 		<put-attribute name="sign_up" value="/WEB-INF/member/{1}.jsp"/>
 	</definition> 
+   	<!-- Ajax 단독 실행 -->
+   	<definition name="galendar/puzzle/ajax" template="/WEB-INF/galendar/puzzle.jsp">
+   	</definition>
+   	
+   	<definition name="category" template="/WEB-INF/category/main.jsp">
+    	<put-attribute name="nav" value="/WEB-INF/inc/nav.jsp"/>
+		<put-attribute name="aside" value="/WEB-INF/category/aside.jsp"/>
+		<put-attribute name="category" value="/WEB-INF/category/cooklist.jsp"/>		
+		<put-attribute name="footer" value="/WEB-INF/inc/footer.jsp"/>
+		
+	</definition>
+	
+	<definition name="category/*" extends="category">
+		<put-attribute name="category" value="/WEB-INF/category/{1}.jsp" />
+	</definition>
+	
+	<definition name="club" template="/WEB-INF/club/main.jsp">
+		<put-attribute name="club" value="/WEB-INF/club/club.jsp"/>		
+	</definition>
+	
+	<definition name="club/*" extends="club">
+		<put-attribute name="club" value="/WEB-INF/club/{1}.jsp" />
+	</definition>
+	
+	<definition name="search" template="/WEB-INF/search/main.jsp">
+    	<put-attribute name="nav" value="/WEB-INF/inc/nav.jsp"/>
+    	<put-attribute name="aside" value="/WEB-INF/search/aside.jsp"/>
+		<put-attribute name="search_find" value="/WEB-INF/search/search_find.jsp"/>		
+		<put-attribute name="footer" value="/WEB-INF/inc/footer.jsp"/>
+		
+	</definition>
+	<definition name="search/*" extends="search">
+		<put-attribute name="search_find" value="/WEB-INF/search/{1}.jsp" />
+	</definition>
+	
+	<!-- 마이페이지 -->
+	<definition name="mypage" template="/WEB-INF/mypage/main.jsp">
+		<put-attribute name="nav" value="/WEB-INF/inc/nav.jsp"/>
+		<put-attribute name="header" value="/WEB-INF/mypage/header.jsp"/>
+		<put-attribute name="aside" value="/WEB-INF/mypage/aside.jsp"/>
+		<put-attribute name="mycategory" value="/WEB-INF/mypage/mycategory.jsp"/>
+	</definition>
+	<definition name="mypage/*" extends="mypage">
+		<put-attribute name="mycategory" value="/WEB-INF/mypage/{1}.jsp"/>
+	</definition>
+	<!-- 메인공지사항보드 -->
+	<definition name="mainboard/*" template="/WEB-INF/mainboard/main.jsp">
+		<put-attribute name="nav" value="/WEB-INF/inc/nav.jsp"/>
+		<put-attribute name="menu" value="/WEB-INF/mainboard/menu.jsp"/>
+		<put-attribute name="list" value="/WEB-INF/mainboard/{1}.jsp"/>
+	</definition>
 	<!--  동아리 게시판  -->
 	<definition name="board/*" template="/WEB-INF/puzzle/main.jsp">
        <put-attribute name="nav" value="/WEB-INF/inc/nav.jsp"/>
@@ -43,5 +103,5 @@
       <put-attribute name="content" value="/WEB-INF/board/{1}.jsp"/>      
       <put-attribute name="footer" value="/WEB-INF/inc/footer.jsp"/>
    </definition>
-   
+	
 </tiles-definitions>

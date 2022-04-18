@@ -1,7 +1,9 @@
 package com.sist.mapper;
 import java.util.*;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import com.sist.vo.*;
@@ -21,7 +23,7 @@ import com.sist.vo.*;
  */
 public interface signupMapper {
 	
-	@Insert("INSERT INTO member VALUES(#{id},#{pwd},#{nic},#{name},#{addr1},#{addr2},#{email},#{tel},#{sex},#{birth},#{post},#{admin})")
+	@Insert("INSERT INTO member(id,pwd,nic,name,addr1,addr2,email,tel,sex,birth,post,admin) VALUES(#{id},#{pwd},#{nic},#{name},#{addr1},#{addr2},#{email},#{tel},#{sex},#{birth},#{post},#{admin})")
 	public void memberSignUp(memberVO vo);
 	
 	@Select("SELECT COUNT(*) FROM member WHERE id=#{id}")
@@ -44,4 +46,16 @@ public interface signupMapper {
 	
 	@Select("SELECT id FROM member WHERE name=#{name} AND email=#{email}")
 	public String findingIdByEmail(Map map);
+	
+	@Select("SELECT CL_RANK FROM grade WHERE id=#{id} AND cl_no=#{cl}")
+	public Integer ismember(@Param("id") String id,@Param("cl") int cl);
+
+	@Insert("INSERT INTO grade values(4,#{id},#{cl},#{g_msg})")
+	public void clubJoin(@Param("id")String id,@Param("cl") int cl,@Param("g_msg") String g_msg);
+
+	@Delete("DELETE FROM grade WHERE id=#{id} AND cl_no=#{cl}")
+	public void cancelJoin(@Param("id")String id,@Param("cl") int cl);
+	
+	@Select("SELECT COUNT(*) FROM grade WHERE cl_no=#{cl_no}")
+	public int puzzleMainHeadCount(int cl_no);
 }

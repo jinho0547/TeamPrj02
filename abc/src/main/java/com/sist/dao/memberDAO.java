@@ -1,11 +1,15 @@
 package com.sist.dao;
 
-import com.sist.mapper.*;
-import com.sist.vo.*;
-import java.util.*;
+import java.util.Map;
+import java.util.StringTokenizer;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.sist.mapper.signupMapper;
+import com.sist.vo.memberVO;
 
 @Repository
 public class memberDAO {
@@ -114,6 +118,36 @@ public class memberDAO {
 			return result;
 		}
 	}
-	
-	
+
+		public Integer ismember(HttpSession session, int cl) {
+		
+		String id = (String)session.getAttribute("id");
+		System.out.println(id);
+		if(id==null) {
+			id="";
+		}
+		Integer tmp = mapper.ismember(id,cl);
+		int grade =0;
+		if (tmp==null) {
+			System.out.println("널이다");
+		}else {
+			grade=tmp;
+		}
+		
+		return grade;
+	}
+
+	public void clubJoin(HttpSession session, int cl, String g_msg) {
+		String id = (String)session.getAttribute("id");
+		mapper.clubJoin(id,cl,g_msg);
+	}
+
+	public void cancelJoin(HttpSession session, int cl) {
+		String id = (String)session.getAttribute("id");
+		mapper.cancelJoin(id,cl);
+	}
+
+	public int puzzleMainHeadCount(int cl_no) {
+		return mapper.puzzleMainHeadCount(cl_no);
+	}
 }

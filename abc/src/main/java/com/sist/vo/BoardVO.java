@@ -11,7 +11,14 @@ public class BoardVO {
 	private int type;
 	private String id;
 	private String cl_no;
+	private int replycnt;
 	
+	public int getReplycnt() {
+		return replycnt;
+	}
+	public void setReplycnt(int replycnt) {
+		this.replycnt = replycnt;
+	}
 	public int getB_no() {
 		return b_no;
 	}

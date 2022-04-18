@@ -19,5 +19,6 @@ public class memberVO {
 	private String post;
 	private int admin;
 	private String birth;
+	private String category;
 	
 }
